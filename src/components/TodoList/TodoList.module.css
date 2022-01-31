@@ -1,0 +1,29 @@
+.todoList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.todoList__form {
+  padding: 10px 0;
+}
+
+.todoList__form button {
+  width: 80px;
+  height: 35px;
+  background-color: rgba(49, 131, 238, 0.877);
+  border: 0px;
+  padding: 0;
+}
+
+.todoList__form input {
+  height: 29px;
+  width: 200px;
+  border-radius: 0px;
+  border: 2px solid rgba(49, 131, 238, 0.877);
+}
+
+.todoList__todoItems {
+  margin-top: 30px;
+}
