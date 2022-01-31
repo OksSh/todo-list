@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+yarn.lock
+tsconfig.json 
+src/reportWebVitals.ts 
+src/reportWebVitals.js
+src/react-app-env.d.ts
+public/robots.txt 
+public/reset.css 
+public/manifest.json 
