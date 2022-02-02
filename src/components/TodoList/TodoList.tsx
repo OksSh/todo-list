@@ -11,10 +11,9 @@ interface ITodos {
 }
 
 export const TodoList = () => {
-  const [textTodo, setTextTodo] = useState('');
   const [todos, setTodos] = useState<ITodos[]>([]);
 
-  const onClickAdd = () => {
+  const onClickAdd = (textTodo: string) => {
     const date = new Date();
     if (textTodo) {
       const newTodo = {
@@ -24,7 +23,6 @@ export const TodoList = () => {
         time: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
       };
       const newTodos = [...todos, newTodo];
-      setTextTodo('');
       setTodos(newTodos);
     } else {
       alert('Oops, you have nothing to do...');
@@ -61,11 +59,7 @@ export const TodoList = () => {
     <div className={styles.todoList}>
       <h1>To do list</h1>
       <div className={styles.todoList__form}>
-        <Form
-          textTodo={textTodo}
-          setTextTodo={setTextTodo}
-          onClickAdd={onClickAdd}
-        />
+        <Form onClickAdd={onClickAdd} />
       </div>
       <p>Total cases: {todos.length}</p>
       <p>Finished cases: {onCountComplete}</p>
