@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  font-family: cursive;
+}
+
+.App {
+  text-align: center;
+}
+
+.wrapper {
+  background: rgba(199, 221, 74, 0.562);
+  height: 100vh;
+  width: 100vw;
+}
