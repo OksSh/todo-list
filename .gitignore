@@ -30,3 +30,5 @@ src/react-app-env.d.ts
 public/robots.txt 
 public/reset.css 
 public/manifest.json 
+
+withLessons.tsx

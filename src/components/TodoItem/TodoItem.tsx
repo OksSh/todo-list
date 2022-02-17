@@ -1,12 +1,13 @@
 import { Button } from '../Button/Button';
 import styles from '../TodoItem/TodoItem.module.css';
 
-interface Iprops {
+export interface ITodoProps {
   text: string;
   onDelete: () => void;
   onComplete: () => void;
   textDecoration: string;
   time: string;
+  id: string;
 }
 
 export function TodoItem({
@@ -15,7 +16,8 @@ export function TodoItem({
   onDelete,
   onComplete,
   textDecoration,
-}: Iprops) {
+  id,
+}: ITodoProps) {
   return (
     <div className={styles.todoItem} style={{ display: 'flex' }}>
       {time ? (
