@@ -1,51 +1,30 @@
 import { Form } from '../Form/Form';
 import { TodoItem } from '../TodoItem/TodoItem';
-import { useState } from 'react';
 import styles from '../TodoList/TodoList.module.css';
-
-interface ITodos {
-  id: string;
-  text: string;
-  textDecoration: string;
-  time: string;
-}
+import { ITodosState } from '../../redux/redusers/todoReduser';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo } from '../../redux/actions/todosActions';
+import { deleteTodo } from '../../redux/actions/todosActions';
+import { completeTodo } from '../../redux/actions/todosActions';
 
 export const TodoList = () => {
-  const [todos, setTodos] = useState<ITodos[]>([]);
+  const state = useSelector((state: ITodosState) => state);
+  const todos = state.todos;
+
+  const dispatch = useDispatch();
 
   const onClickAdd = (textTodo: string) => {
-    const date = new Date();
     if (textTodo) {
-      const newTodo = {
-        text: textTodo,
-        id: 'id' + Math.random().toString(16).slice(2),
-        textDecoration: 'none',
-        time: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
-      };
-      const newTodos = [...todos, newTodo];
-      setTodos(newTodos);
-    } else {
-      alert('Oops, you have nothing to do...');
-    }
+      dispatch(addTodo(textTodo));
+    } else alert('Oops, you have nothing to do...');
   };
 
   const onClickDelete = (id: string) => {
-    const newTodos = todos.filter((item) => {
-      return item.id !== id;
-    });
-    setTodos(newTodos);
+    dispatch(deleteTodo(id));
   };
 
   const onClickComplete = (id: string) => {
-    const newTodos = todos.map((item) => {
-      if (item.id === id && item.textDecoration === 'none') {
-        item.textDecoration = 'line-through';
-      } else if (item.id === id && item.textDecoration === 'line-through') {
-        item.textDecoration = 'none';
-      }
-      return item;
-    });
-    setTodos(newTodos);
+    dispatch(completeTodo(id));
   };
 
   const onCountComplete = todos.reduce((prev, current) => {
@@ -72,6 +51,7 @@ export const TodoList = () => {
               onDelete={() => onClickDelete(item.id)}
               onComplete={() => onClickComplete(item.id)}
               key={item.id}
+              id={item.id}
               textDecoration={item.textDecoration}
               time={item.time}
             />
