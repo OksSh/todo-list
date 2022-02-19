@@ -16,18 +16,14 @@ const defaultState: ITodosState = {
 export const todoReducer = (state = defaultState, action: any) => {
   if (action.type === 'CLICK_ADD_TODO') {
     const date = new Date();
-    if (action.text) {
-      const newTodo = {
-        text: action.text,
-        id: 'id' + Math.random().toString(16).slice(2),
-        textDecoration: 'none',
-        time: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
-      };
-      const newTodos = [...state.todos, newTodo];
-      return { todos: newTodos };
-    } else {
-      alert('Oops, you have nothing to do...');
-    }
+    const newTodo = {
+      text: action.text,
+      id: 'id' + Math.random().toString(16).slice(2),
+      textDecoration: 'none',
+      time: `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`,
+    };
+    const newTodos = [...state.todos, newTodo];
+    return { todos: newTodos };
   }
 
   if (action.type === 'CLICK_DELETE_TODO') {

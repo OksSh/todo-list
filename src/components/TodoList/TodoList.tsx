@@ -3,24 +3,28 @@ import { TodoItem } from '../TodoItem/TodoItem';
 import styles from '../TodoList/TodoList.module.css';
 import { ITodosState } from '../../redux/redusers/todoReduser';
 import { useDispatch, useSelector } from 'react-redux';
+import { addTodo } from '../../redux/actions/todosActions';
+import { deleteTodo } from '../../redux/actions/todosActions';
+import { completeTodo } from '../../redux/actions/todosActions';
 
 export const TodoList = () => {
   const state = useSelector((state: ITodosState) => state);
   const todos = state.todos;
 
-  console.log(state);
   const dispatch = useDispatch();
 
   const onClickAdd = (textTodo: string) => {
-    dispatch({ type: 'CLICK_ADD_TODO', text: textTodo });
+    if (textTodo) {
+      dispatch(addTodo(textTodo));
+    } else alert('Oops, you have nothing to do...');
   };
 
   const onClickDelete = (id: string) => {
-    dispatch({ type: 'CLICK_DELETE_TODO', id: id });
+    dispatch(deleteTodo(id));
   };
 
   const onClickComplete = (id: string) => {
-    dispatch({ type: 'CLICK_COMPLETE_TODO', id: id });
+    dispatch(completeTodo(id));
   };
 
   const onCountComplete = todos.reduce((prev, current) => {
